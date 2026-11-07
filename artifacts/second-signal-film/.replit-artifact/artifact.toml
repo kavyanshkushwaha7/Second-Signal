@@ -1,0 +1,29 @@
+kind = "video"
+videoAspectRatio = "16:9"
+previewPath = "/second-signal-film/"
+title = "SecondSignal — Give More. Waste Less."
+description = "An animated introduction to the SecondSignal campus reuse community, highlighting sharing, borrowing, connections and demo matching."
+version = "1.0.0"
+id = "artifacts/second-signal-film"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/second-signal-film/" ]
+localPort = 22651
+
+[services.development]
+run = "pnpm --filter @workspace/second-signal-film run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/second-signal-film", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/second-signal-film/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22651"
+BASE_PATH = "/second-signal-film/"

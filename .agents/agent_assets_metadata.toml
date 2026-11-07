@@ -1,0 +1,9 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "4SybM06UYEixOpVlSnHtd"
+uri = "file://artifacts/second-signal-film/public/audio/bg_music.mp3"
+type = "audio"
+title = "background music"
+description = "Generated music: Warm lo-fi indie pop instrumental scoring a friendly campus community app brand film. Soft plucked guitar, mellow keys, light brushed drums, 92 BPM, hopeful and human. Gentle intro, …"
