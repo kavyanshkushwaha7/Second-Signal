@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "SecondSignal"
+description = "A campus community and reuse marketplace for buying, giving, borrowing, exchanging and connecting. A complete locally persistent frontend demo with simulated matching and messaging."
+version = "1.0.0"
+id = "artifacts/second-signal"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 26110
+
+[services.development]
+run = "pnpm --filter @workspace/second-signal run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/second-signal", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/second-signal/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "26110"
+BASE_PATH = "/"

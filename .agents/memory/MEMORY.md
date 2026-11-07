@@ -1,0 +1,1 @@
+- [SecondSignal scope](product-scope.md) — frontend-only simulation boundaries, user-mandated visual consistency, and bilateral handover confirmation.
