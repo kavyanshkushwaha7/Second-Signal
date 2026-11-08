@@ -1,1 +1,1 @@
-- [SecondSignal scope](product-scope.md) — frontend-only simulation boundaries, user-mandated visual consistency, and bilateral handover confirmation.
+- [SecondSignal scope](product-scope.md) — phased Supabase upgrade, preserved visual identity, honest demo boundaries, and bilateral handover confirmation.
