@@ -1,1 +1,2 @@
 - [SecondSignal scope](product-scope.md) — phased Supabase upgrade, preserved visual identity, honest demo boundaries, and bilateral handover confirmation.
+- [Supabase operations](supabase-operations.md) — target the external project, preserve TLS verification, and roll back database-test fixtures.

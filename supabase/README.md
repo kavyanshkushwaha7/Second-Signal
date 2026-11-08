@@ -2,21 +2,22 @@
 
 ## Current status
 
-The configured project responds to the Auth API. Email/password login is enabled
-and email confirmation is required. The initial check found no `public.profiles`
-table in its API schema. No schema changes have been applied by the agent.
+The foundation and profile-media ownership migrations have been applied to the
+connected Supabase project. All 16 app tables have RLS enabled. Email/password
+login is enabled and email confirmation is required.
 
 The existing website remains the labelled local demo until the connected flows
 are implemented and tested. Adding connection settings does not turn it into a
 live marketplace.
 
-## Apply the foundation
+## Applying to a new Supabase project (not the already migrated project)
 
 1. Open the **same Supabase project** used for the configured Project URL.
 2. Open **SQL Editor → New query**.
 3. Copy the complete contents of
    `supabase/migrations/202611090001_secondsignal_foundation.sql` and run it once.
-4. On success, tell the agent the migration was applied. If it fails, provide the
+4. Run `supabase/migrations/202611090002_profile_media_ownership.sql` next.
+5. On success, tell the agent the migrations were applied. If they fail, provide the
    error text only (no keys, passwords or connection strings).
 
 This migration creates new tables and private Storage buckets; it does not delete
@@ -50,9 +51,17 @@ students at scale; development email quotas are not a production delivery setup.
 
 ## Remaining implementation and validation
 
-The SQL has been prepared but has NOT yet been run against the connected project.
-RLS and Storage policies must be tested with two real test accounts and an
-unauthenticated client after applying it. No live account flow has passed yet.
+Run `node supabase/verify-foundation.mjs` to check database authorization using
+temporary fixtures. It verifies the configured PostgreSQL target matches the
+Supabase API project, validates TLS using the official Supabase CA, and rolls
+back every test record. It uses the server-only `SUPABASE_DATABASE_URL` secret.
+The certificate in `certs/` is a public CA certificate, not a credential.
+
+These tests cover verified/unverified/anonymous access, author ownership,
+conversation privacy, private contacts/saves, constraints, protected workflow
+tables and media ownership. They do NOT test browser login, email delivery,
+password reset, signed upload/download URLs or realtime delivery. No live
+account UI flow has passed yet.
 
 Next phases wire authentication/onboarding, the seven-type post composer, database
 feeds/profiles, private messaging, atomic request transitions and event-driven
