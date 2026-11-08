@@ -25,7 +25,7 @@ export default function Home() {
 
   const feed = useMemo(() => [...data.listings].filter((l) => cat === 'all' || l.category === cat).sort((a, b) => b.createdAt.localeCompare(a.createdAt)), [data.listings, cat]);
   const openWants = data.wants.filter((w) => w.status === 'open' && w.userId !== me).slice(0, 3);
-  const shared = data.requests.filter((r) => r.status === 'completed').length + 128;
+  const shared = data.requests.filter((r) => r.status === 'completed').length;
 
   return (
     <div>
